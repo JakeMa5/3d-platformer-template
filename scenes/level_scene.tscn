@@ -57,12 +57,12 @@ light_energy = 0.515
 shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="Environment" node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.936627, 0.350327, 0, -0.350327, 0.936627, -0.526772, 2.85033, 12.6906)
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0.000866855, 0, -0.000866855, 0.999998, -0.526772, 2.50087, 12.754)
 script = ExtResource("3_hu4fy")
 priority = 1
 follow_mode = 6
 follow_target = NodePath("../../Player")
-look_at_mode = 2
+look_at_mode = 1
 look_at_target = NodePath("../../Player")
 tween_resource = SubResource("Resource_2t1x1")
 follow_offset = Vector3(0, 1.5, 4)
@@ -70,7 +70,7 @@ follow_damping = true
 look_at_damping = true
 
 [node name="Camera3D" type="Camera3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 0.936627, 0.350327, 0, -0.350327, 0.936627, -0.526772, 2.85033, 12.6906)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000866856, 0, -0.000866856, 1, -0.526772, 2.50087, 12.754)
 
 [node name="PhantomCameraHost" type="Node" parent="Environment/Camera3D"]
 process_priority = 300
@@ -290,6 +290,27 @@ theme_override_constants/margin_bottom = 16
 [node name="ScoreCounter" parent="Hud/MarginContainer" node_paths=PackedStringArray("player") instance=ExtResource("9_vgc2b")]
 layout_mode = 2
 player = NodePath("../../../Player")
+
+[node name="PanelContainer" type="PanelContainer" parent="Hud/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Hud/MarginContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Controls
+
+ARROW KEYS: Move
+SPACE: Jump"
 
 [node name="LevelBounds" type="StaticBody3D" parent="."]
 
