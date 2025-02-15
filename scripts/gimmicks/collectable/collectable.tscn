@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://do60bp3b24unx"]
+
+[ext_resource type="Script" path="res://scripts/gimmicks/collectable/collectable.gd" id="1_ce2qa"]
+[ext_resource type="Material" uid="uid://l1too503dunt" path="res://scripts/gimmicks/collectable/mat_collectable.tres" id="1_iweah"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mjwdm"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.05
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l0bkm"]
+
+[sub_resource type="Animation" id="Animation_y8143"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tkx5c"]
+resource_name = "collectable_idle_loop"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(1.5708, 0, 6.28319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8657r"]
+_data = {
+"RESET": SubResource("Animation_y8143"),
+"collectable_idle_loop": SubResource("Animation_tkx5c")
+}
+
+[node name="Collectable" type="Area3D" node_paths=PackedStringArray("animation_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 2
+script = ExtResource("1_ce2qa")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0)
+material_override = ExtResource("1_iweah")
+mesh = SubResource("CylinderMesh_mjwdm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_l0bkm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8657r")
+}

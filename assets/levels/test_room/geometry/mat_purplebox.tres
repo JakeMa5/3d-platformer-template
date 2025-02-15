@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://couxtpmlm2q7o"]
+
+[ext_resource type="Texture2D" uid="uid://lfqbi8dydvht" path="res://assets/levels/test_room/geometry/tex_proto_purplebox.png" id="1_eqtsv"]
+
+[resource]
+albedo_texture = ExtResource("1_eqtsv")
+uv1_scale = Vector3(2, 2, 2)

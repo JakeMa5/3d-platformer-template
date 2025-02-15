@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c332oomiok4bt"]
+
+[ext_resource type="Script" path="res://scripts/ui/hud/score_counter_controller.gd" id="1_ck6e8"]
+[ext_resource type="Texture2D" uid="uid://61okwkpv4lqo" path="res://assets/icons/tex_icon_coin.png" id="2_5hvr4"]
+
+[node name="ScoreCounter" type="HBoxContainer" node_paths=PackedStringArray("label")]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_ck6e8")
+label = NodePath("Label")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_5hvr4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
