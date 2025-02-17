@@ -15,6 +15,13 @@ var score: int = 0:
 		var previous = score
 		score = value
 		score_changed.emit(previous, score)
+		
+
+var _initial_pos: Vector3 = Vector3.ZERO
+
+
+func _ready() -> void:
+	_initial_pos = position
 
 
 func _physics_process(delta: float) -> void:
@@ -38,3 +45,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func die() -> void:
+	position = _initial_pos
