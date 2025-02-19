@@ -1,21 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://qwy4ev4uv7d4"]
+[gd_scene load_steps=9 format=3 uid="uid://qwy4ev4uv7d4"]
 
 [ext_resource type="Material" uid="uid://bnkg4joeg3shw" path="res://assets/levels/test_room/geometry/mat_orangebox.tres" id="1_m52cn"]
 [ext_resource type="PackedScene" uid="uid://g7x4yvnmpths" path="res://scripts/player/player.tscn" id="1_qt58r"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_8q6yc"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_hu4fy"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_uogts"]
 [ext_resource type="Environment" uid="uid://8wm8xinr2b06" path="res://assets/levels/test_room/env_test_room.tres" id="5_ac6ma"]
 [ext_resource type="Material" uid="uid://couxtpmlm2q7o" path="res://assets/levels/test_room/geometry/mat_purplebox.tres" id="7_3jois"]
 [ext_resource type="PackedScene" uid="uid://do60bp3b24unx" path="res://scripts/gimmicks/collectable/collectable.tscn" id="8_mannl"]
 [ext_resource type="Script" path="res://scripts/gimmicks/death_plane/death_plane.gd" id="9_30g5e"]
 [ext_resource type="PackedScene" uid="uid://c332oomiok4bt" path="res://scripts/ui/hud/score_counter.tscn" id="9_vgc2b"]
-
-[sub_resource type="Resource" id="Resource_2t1x1"]
-script = ExtResource("4_uogts")
-duration = 1.0
-transition = 0
-ease = 2
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8f424"]
 
@@ -24,6 +15,9 @@ ease = 2
 [node name="Player" parent="." instance=ExtResource("1_qt58r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.526772, 1, 7.754)
 collision_mask = 5
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0.000866856, 0, -0.000866856, 1, 0, 1.50087, 5)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -35,26 +29,8 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9.9
 light_energy = 0.515
 shadow_enabled = true
 
-[node name="PhantomCamera3D" type="Node3D" parent="Environment" node_paths=PackedStringArray("follow_target", "look_at_target")]
+[node name="PhantomCamera3D" type="Node3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.999998, 0.000866855, 0, -0.000866855, 0.999998, -0.526772, 2.50087, 12.754)
-script = ExtResource("3_hu4fy")
-priority = 1
-follow_mode = 6
-follow_target = NodePath("../../Player")
-look_at_mode = 1
-look_at_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_2t1x1")
-follow_offset = Vector3(0, 1.5, 4)
-follow_damping = true
-look_at_damping = true
-
-[node name="Camera3D" type="Camera3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0.000866856, 0, -0.000866856, 1, -0.526772, 2.50087, 12.754)
-
-[node name="PhantomCameraHost" type="Node" parent="Environment/Camera3D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("2_8q6yc")
 
 [node name="Collectables" type="Node3D" parent="."]
 
